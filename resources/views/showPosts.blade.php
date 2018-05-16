@@ -8,6 +8,7 @@
       <th> Post ID </th>
       <th> Post title </th>
       <th> Edit </th>
+      <th> Delete </th>
     </tr>
     @if(count($data)>0)
 
@@ -16,6 +17,7 @@
             <th> {{$post->id}} </th>
             <th> <a href="{{ url('post',$post->id) }}"> {{$post->postname2}} </a> </th>
             <th> <a href="{{ url('admin/edit',$post->id) }}" class="btn btn-primary"> edit </a> </th>
+            <th> <a href="{{ url('admin/showDelete',$post->id) }}" class="btn btn-danger"> delete </a> </th>
           </tr>
         @endforeach
     @endif

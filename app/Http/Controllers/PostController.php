@@ -64,6 +64,7 @@ class PostController extends Controller
       return view('showEditPost')->withPost($post);
     }
 
+
     public function editPost(Request $request){
       $this->validate($request, [
           'id' => 'required',
@@ -82,4 +83,24 @@ class PostController extends Controller
       return redirect('/admin');
     }
 
+    public function showDeletePost($id){
+
+      $post = makePost::where('id', '=', $id)->first();
+
+      $comments = comments::all()->where('postid', '=', $post->id);
+
+      return view('deletePost')->withPost($post)->with('comments', $comments);
+
+    }
+    public function deletePost($id){
+
+      makePost::where('id', '=', $id)->delete();
+      comments::where('postid', '=', $id)->delete();
+
+      return redirect()->route('show.posts');
+
+    }
+    public function dontDelete(){
+      return redirect()->route('show.posts');
+    }
 }

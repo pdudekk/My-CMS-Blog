@@ -45,15 +45,17 @@ Route::get('/register', 'RegisterController@create');
 
 Route::prefix('admin')->group(function (){
 
-    Route::get('/showPost', 'PostController@showPost');
+    Route::get('/showPost', 'PostController@showPost')->name('show.posts');
     Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
     Route::get('/', 'PostController@index')->name('admin.post');
     Route::post('/submit', 'PostController@addPost');
     Route::post('/editPost/submit', 'PostController@editPost');
-
+    Route::get('/delete/{id}', 'PostController@deletePost');
+    Route::get('/dontDelete', 'PostController@dontDelete');
 });
 
+    Route::get('admin/showDelete/{id}', 'PostController@showDeletePost');
     Route::get('admin/edit/{id}', 'PostController@showEditPost');
 
     Route::get('/', 'Controller@getPosts')->name('home');

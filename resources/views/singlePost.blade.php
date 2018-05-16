@@ -32,10 +32,10 @@
                   {{Form::text('id', $post->id, ['class'=> 'invisible'])}}
                   @if(Auth::guard('web')->check())
 
-                    {{Form::text('user', Auth::guard('web')->User()->name, ['class'=> 'form-control'])}}
+                    {{Form::text('user', Auth::guard('web')->User()->name, ['class'=> 'invisible'])}}
 
                   @elseif(Auth::guard('admin')->check())
-                    {{Form::text('user', Auth::guard('admin')->User()->name, ['class'=> 'form-control'])}}
+                    {{Form::text('user', Auth::guard('admin')->User()->name, ['class'=> 'invisible'])}}
                   @endif
                   {{Form::textarea('Message', '', ['class' => 'form-control'])}}
               </div>
