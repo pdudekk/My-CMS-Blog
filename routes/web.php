@@ -50,7 +50,7 @@ Route::prefix('admin')->group(function (){
     Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
     Route::get('/', 'PostController@index')->name('admin.post');
     Route::post('/submit', 'PostController@addPost');
-    Route::post('/edit/{id}/submit', 'PostController@editPost');
+    Route::post('/editPost/submit', 'PostController@editPost');
 
 });
 

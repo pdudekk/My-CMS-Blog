@@ -19,13 +19,17 @@
             <li class="{{Request::is('contact') ? 'active' : ''}}">
                 <a class="nav-link" href="/contact">Contact</a>
             </li>
-
-            @if(Auth::check())
-           @include('inc.navbarLogged');
-        @endif
-            @if(!Auth::check())
-            @include('inc.navbarLogin');
+            @if(Auth::guard('admin')->check())
+                @include('inc.navbarAdmin');
             @endif
+
+           @if(Auth::guard('admin')->check() || Auth::guard('web')->check())
+            @include('inc.navbarLogged');
+           @else
+            @include('inc.navbarLogin');
+           @endif
+
+
         </ul>
     </div>
 </nav>

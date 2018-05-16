@@ -66,9 +66,19 @@ class PostController extends Controller
 
     public function editPost(Request $request){
       $this->validate($request, [
+          'id' => 'required',
           'title' => 'required',
           'Content' => 'required'
       ]);
+
+      $post = makePost::where('id', '=', $request->input('id'))->first();
+
+      $post->postname2 = $request->input('title');
+      $post->adminid2 = 1;
+      $post->postcontent2= $request->input('Content');
+
+      $post->save();
+
       return redirect('/admin');
     }
 
