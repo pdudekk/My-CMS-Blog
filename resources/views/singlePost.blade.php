@@ -22,7 +22,7 @@
                   @endforeach
               @endif
                 <br>
-              @if(Auth::check())
+              @if(Auth::guard('web')->check() || Auth::guard('admin')->check())
 
               {!! Form::open(['url' => 'comment/post']) !!}
 
@@ -30,14 +30,21 @@
 
                   {{Form::label('Message', 'Send comment : ')}}
                   {{Form::text('id', $post->id, ['class'=> 'invisible'])}}
+                  @if(Auth::guard('web')->check())
+
+                    {{Form::text('user', Auth::guard('web')->User()->name, ['class'=> 'form-control'])}}
+
+                  @elseif(Auth::guard('admin')->check())
+                    {{Form::text('user', Auth::guard('admin')->User()->name, ['class'=> 'form-control'])}}
+                  @endif
                   {{Form::textarea('Message', '', ['class' => 'form-control'])}}
               </div>
               <div>
                   {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
               </div>
               {!! Form::close() !!}
-              @endif
-              @if(!Auth::check())
+
+              @else
 
                   <a href="/login" class="btn btn-primary">Login to send comment</a>
 

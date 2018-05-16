@@ -18,7 +18,7 @@ class CommentController extends Controller
 
 
         $comment->postid = $request->input('id');
-        $comment->username = Auth::User()->name;
+        $comment->username = $request->input('user');
         $comment->comcontent = $request->input('Message');
 
         $comment->save();
