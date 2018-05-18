@@ -4,10 +4,12 @@
     <head>
 
         <meta charset="utf-8">
-        <title>BasicPage</title>
+        <title>Blog</title>
 
-
-        <link rel="stylesheet" href="/css/bootstrap.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"> </script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 
     </head>
 

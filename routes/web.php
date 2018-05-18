@@ -53,6 +53,7 @@ Route::prefix('admin')->group(function (){
     Route::post('/editPost/submit', 'PostController@editPost');
     Route::get('/delete/{id}', 'PostController@deletePost');
     Route::get('/dontDelete', 'PostController@dontDelete');
+    Route::post('/deleteComment', 'PostController@deleteComment');
 });
 
     Route::get('admin/showDelete/{id}', 'PostController@showDeletePost');

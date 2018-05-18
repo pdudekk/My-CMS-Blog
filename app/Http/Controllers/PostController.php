@@ -103,4 +103,15 @@ class PostController extends Controller
     public function dontDelete(){
       return redirect()->route('show.posts');
     }
+
+    public function deleteComment(Request $request){
+
+      $this->validate($request, [
+          'com_id' => 'required',
+      ]);
+
+      comments::where('id', '=', $request->input('com_id'))->delete();
+
+      return back();
+    }
 }

@@ -4,23 +4,47 @@
 @section('content')
 
 
+
+
               <h2> {{$post->postname2}}    </h2>
             <p class="list-group-item"> {{$post->postcontent2}}</p>
-              <br>
-        <h3>Comments :</h3>
-              <br>
+
+            <div class="container">
+              <div class="row">
+                  <div class="col-md-8">
+                    <div class="page-header">
+                      <h1> Comments :</h1>
+                    </div>
+                    <hr>
               @if(count($comments)>0)
                   @foreach($comments as $com)
-                 <ul class="list-group">
-                     <li class="list-group-item list-group-item-primary">
-                         <strong>{{$com->username}}</strong>
-                     </li>
-                     <li class="list-group-item list-group-item-info">
-                      {{$com->comcontent}}
-                     </li>
-                 </ul>
+
+
+                   <div class="comments-list shadow-sm p-3 mb-5 bg-white rounded">
+                       <div class="media">
+                            <div class="media-body">
+                              <h4 class="media-heading user_name">{{$com->username}}
+                                @if(Auth::guard('admin')->check())
+
+                                <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-comid="{{$com->id}}" data-comcontent="{{$com->comcontent}}" data-comusername="{{$com->username}}" data-target="#delete">
+                                  Delete
+                                </button>
+
+                                @endif
+                              </h4>
+                                {{$com->comcontent}}
+
+                            </div>
+                          </div>
+
+                        </div>
+
+
                   @endforeach
               @endif
+            </div>
+        </div>
+      </div>
                 <br>
               @if(Auth::guard('web')->check() || Auth::guard('admin')->check())
 
@@ -52,4 +76,65 @@
 
     <br>
     <br>
+
+
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
+          </div>
+
+          		{{method_field('delete')}}
+          		{{csrf_field()}}
+    	      <div class="modal-body">
+    				<p class="text-center">
+    					Are you sure you want to delete this?
+    				</p>
+            <div class="comments-list shadow-sm p-3 mb-5 bg-white rounded">
+                <div class="media">
+                     <div class="media-body">
+                       <h4 id="com_username" class="media-heading user_name">{{$com->username}}</h4>
+                         <p id="com_content">{{$com->comcontent}}</p>
+                     </div>
+                   </div>
+
+            </div>
+
+    	      </div>
+    	      <div class="modal-footer">
+
+              <form method="post" action="/admin/deleteComment">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input type="hidden" name="com_id" class="form-control" id="com_id" value="">
+
+    	        <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
+    	        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+
+              </form>
+
+    	      </div>
+
+        </div>
+      </div>
+    </div>
+
+@if(Auth::guard('admin')->check())
+    <script>
+        $('#delete').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        var com_id = button.attr('data-comid');
+        var com_content = button.attr('data-comcontent');
+        var com_username = button.attr('data-comusername');
+
+        modal.find('#com_id').val(com_id);
+        modal.find('#com_content').text(com_content);
+        modal.find('#com_username').text(com_username);
+
+    });
+    </script>
+  @endif
+
 @endsection
