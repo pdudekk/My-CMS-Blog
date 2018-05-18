@@ -23,4 +23,5 @@
     @endif
     </table>
   </div>
+
   @endsection

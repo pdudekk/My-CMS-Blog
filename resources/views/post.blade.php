@@ -2,8 +2,13 @@
 
 @section('content')
     <h1>Make new post</h1>
+    <hr>
+    <form method="post" action="/admin/submit" enctype="multipart/form-data">
+    
 
-    {!! Form::open(['url' => 'admin/submit']) !!}
+    <div class="form-group">
+        <input type="file" name="image" id="file" class="form-control-file" >
+    </div>
     <div class="form-group">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', '', ['class' => 'form-control'])}}
@@ -15,6 +20,6 @@
     <div>
         {{Form::submit('Add Post', ['class' => 'btn btn-primary'])}}
     </div>
-    {!! Form::close() !!}
+    <input type="hidden" value="{{ csrf_token() }}" name="_token">
+    </form>
 @endsection
-

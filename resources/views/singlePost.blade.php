@@ -5,14 +5,20 @@
 
 
 
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+     <h2> {{$post->postname2}}    </h2>
+     <hr>
+    <img  src="{{Storage::url('images/post/'. $post->img)}}" class="img-main">
+    <hr>
+    <p class=""> {{$post->postcontent2}}</p>
 
-              <h2> {{$post->postname2}}    </h2>
-            <p class="list-group-item"> {{$post->postcontent2}}</p>
-
+    <br>
+</div>
             <div class="container">
               <div class="row">
                   <div class="col-md-8">
                     <div class="page-header">
+
                       <h1> Comments :</h1>
                     </div>
                     <hr>
@@ -95,8 +101,8 @@
             <div class="comments-list shadow-sm p-3 mb-5 bg-white rounded">
                 <div class="media">
                      <div class="media-body">
-                       <h4 id="com_username" class="media-heading user_name">{{$com->username}}</h4>
-                         <p id="com_content">{{$com->comcontent}}</p>
+                       <h4 id="com_username" class="media-heading user_name"></h4>
+                         <p id="com_content"></p>
                      </div>
                    </div>
 

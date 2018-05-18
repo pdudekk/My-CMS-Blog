@@ -12,7 +12,7 @@ use Illuminate\View\View;
 use App\comments;
 use Illuminate\Pagination\Paginator;
 use DB;
-
+use Auth;
 
 class PostController extends Controller
 {
@@ -32,15 +32,40 @@ class PostController extends Controller
 
         //walidacja
         $this->validate($request, [
+            'image' => 'required',
             'title' => 'required',
             'Content' => 'required'
         ]);
 
+
+
+          $file = $request->file('image');
+          $ext = strtolower($file->getClientOriginalExtension());
+
+          $myExt = (string)$ext;
+
+
+        $lastpost = makePost::orderBy('created_at', 'desc')->first();
+
+        //return (string)(((0)+1).'.'.$myExt);
+
+
+        if(!is_object($lastpost)){
+          $img_name = ('1'.'.'.$myExt);
+        }
+        else{
+         $img_name = ((string)(($lastpost->id)+1).'.'.$myExt);
+        }
+
+
+
+        $file->storeAs('public/images/post', $img_name);
         //Tworzenie posta
         $post = new makePost();
-        $post->postname2 = $request-> input('title');
-        $post->adminid2 =1;
-        $post->postcontent2 = $request-> input('Content');
+        $post->postname2 = $request->input('title');
+        $post->adminid2 = Auth::guard('admin')->user()->id;
+        $post->postcontent2 = $request->input('Content');
+        $post->img = $img_name;
 
         $post->save();
 

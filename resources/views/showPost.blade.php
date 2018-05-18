@@ -6,11 +6,15 @@
     @if(count($make_posts)>0)
 
         @foreach($make_posts as $post)
+        <div class="shadow-sm p-3 mb-5 bg-white rounded">
             <a href="{{ url('post',$post->id) }}">    <h2> {{$post->postname2}}    </h2></a>
-            <p class="list-group-item"> {{$post->postcontent2}}</p>
+            <hr>
+            <a href="{{ url('post',$post->id) }}"><img  src="{{Storage::url('images/post/'. $post->img)}}" class="img-main"></a>
+            <hr>
+            <p class=""> {{$post->postcontent2}}</p>
 
             <br>
-
+        </div>
 
         @endforeach
     @endif

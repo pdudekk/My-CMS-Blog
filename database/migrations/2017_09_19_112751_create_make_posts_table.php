@@ -18,6 +18,7 @@ class CreateMakePostsTable extends Migration
             $table->string('postname1');
             $table->integer('adminid1');
             $table->longText('postcontent1');
+            $table->string('img');
             $table->timestamps();
         });
     }
