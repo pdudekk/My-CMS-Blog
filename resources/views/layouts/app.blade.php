@@ -42,7 +42,7 @@
 
 
           <footer id='my_footer' class="text-center footer">
-            <p> Using Laravel v5.5 </p>
+            <p> Using Laravel v5.4 </p>
             <p> Copyright &copy; Paweł Dudek </p>
           </footer>
 

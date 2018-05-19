@@ -13,21 +13,38 @@
               <h2> {{$post->postname2}}    </h2>
             <p class="list-group-item"> {{$post->postcontent2}}</p>
               <br>
-        <h3>Comments :</h3>
-              <br>
-              @if(count($comments)>0)
-                  @foreach($comments as $com)
-                 <ul class="list-group">
-                     <li class="list-group-item list-group-item-primary">
-                         <strong>{{$com->username}}</strong>
-                     </li>
-                     <li class="list-group-item list-group-item-info">
-                      {{$com->comcontent}}
-                     </li>
-                 </ul>
-                  @endforeach
-              @endif
-                <br>
+              <div class="container">
+                    <div class="col-md-8 col-lg-8">
+                      <div class="page-header">
+
+                        <h1> Comments :</h1>
+                      </div>
+                      <hr>
+                      <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                @if(count($comments)>0)
+                    @foreach($comments as $com)
+
+
+
+                         <div class="media">
+                              <div class="media-body">
+                                <h4 class="media-heading user_name">{{$com->username}}
+                                  
+                                </h4>
+                                  {{$com->comcontent}}
+
+                              </div>
+                            </div>
+                            <hr>
+
+
+
+                    @endforeach
+                @endif
+                  </div>
+              </div>
+
+        </div>
 
 
     <br>

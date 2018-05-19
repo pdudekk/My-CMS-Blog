@@ -15,18 +15,18 @@
     <br>
 </div>
             <div class="container">
-              <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-8 col-lg-8">
                     <div class="page-header">
 
                       <h1> Comments :</h1>
                     </div>
                     <hr>
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded">
               @if(count($comments)>0)
                   @foreach($comments as $com)
 
 
-                   <div class="comments-list shadow-sm p-3 mb-5 bg-white rounded">
+
                        <div class="media">
                             <div class="media-body">
                               <h4 class="media-heading user_name">{{$com->username}}
@@ -42,14 +42,15 @@
 
                             </div>
                           </div>
+                          <hr>
 
-                        </div>
 
 
                   @endforeach
               @endif
+                </div>
             </div>
-        </div>
+
       </div>
                 <br>
               @if(Auth::guard('web')->check() || Auth::guard('admin')->check())
@@ -67,7 +68,7 @@
                   @elseif(Auth::guard('admin')->check())
                     {{Form::text('user', Auth::guard('admin')->User()->name, ['class'=> 'invisible'])}}
                   @endif
-                  {{Form::textarea('Message', '', ['class' => 'form-control'])}}
+                   <textarea class="form-control" name="Message" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
               <div>
                   {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
