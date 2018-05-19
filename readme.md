@@ -17,7 +17,7 @@ cd blog
 composer install
 php artisan key:generate
 ```
-Create database as in .env file or change this data as You like to.
+Create database as in .env file or change this file to your own preferences.
 
 .env file :
 ```sh
@@ -30,7 +30,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ...
 ```
-After that migrate and seed database for Admin account.
+Next step is migrate and seed database.
 ```sh
 php artisan migrate
 php artisan db:seed
